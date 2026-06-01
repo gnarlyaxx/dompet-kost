@@ -31,9 +31,10 @@ export default function AuthPage({ onAuth }) {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-5 py-10 bg-gradient-to-br from-amber-600 via-[#F59E0B] to-amber-500">
       <div className="text-center text-white mb-8 animate-slide-up">
-      <img src="/DKWhite.png" alt="Logo DompetKost" className="w-8 h-8 md:w-10 md:h-10 object-contain" />
-
-        <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">Dompet Kost</h1>
+        <div className="flex items-center justify-center gap-3">
+          <img src="/DKWhite.png" alt="Logo DompetKost" className="w-8 h-8 md:w-10 md:h-10 object-contain" />
+          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">Dompet Kost</h1>
+        </div>
         <p className="text-sm md:text-base opacity-80 mt-2">Kelola keuanganmu dengan cerdas</p>
       </div>
       <div className="bg-white rounded-3xl p-7 md:p-10 w-full max-w-[380px] md:max-w-[440px] shadow-[0_16px_48px_rgba(0,0,0,0.2)] animate-slide-up" style={{ animationDelay: '0.1s' }}>
