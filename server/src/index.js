@@ -25,6 +25,10 @@ app.use('/api/reminders', remindersRouter);
 
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`DompetKost server running on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`DompetKost server running on port ${PORT}`);
+  });
+}
+
+module.exports = app;
