@@ -106,5 +106,5 @@ cd dompet-kost
 ---
 
 ## 👥 Kontributor
-* **[@gnarlyaxx](https://github.com/gnarlyaxx)** (Owner & Developer)
+* **[@Boby Harjuna Pangestu](https://github.com/gnarlyaxx)** (Owner & Developer)
 * **[@Biaro1](https://github.com/Biaro1)** (Co-Developer)
