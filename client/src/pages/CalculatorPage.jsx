@@ -34,8 +34,59 @@ export default function CalculatorPage() {
   const handleCalc = (v) => {
     if (v === 'C') return setDisplay('0');
     if (v === '⌫') return setDisplay(d => d.length <= 1 ? '0' : d.slice(0, -1));
-    if (v === '=') { try { setDisplay(String(eval(display))); } catch { setDisplay('Error'); } return; }
-    setDisplay(d => d === '0' && !['.','+','-','*','/'].includes(v) ? v : d + v);
+    if (v === '%') {
+      setDisplay(d => {
+        const lastChar = d[d.length - 1];
+        if (/[0-9]/.test(lastChar)) {
+          return d + '%';
+        }
+        return d;
+      });
+      return;
+    }
+    if (v === '=') {
+      try {
+        let expr = display;
+        while (expr.includes('%')) {
+          const pctIdx = expr.indexOf('%');
+          let numStart = pctIdx - 1;
+          while (numStart >= 0 && /[0-9.]/.test(expr[numStart])) {
+            numStart--;
+          }
+          numStart++;
+          
+          const percentNumStr = expr.substring(numStart, pctIdx);
+          const percentNum = parseFloat(percentNumStr);
+          if (isNaN(percentNum)) break;
+          
+          let opIdx = numStart - 1;
+          while (opIdx >= 0 && expr[opIdx] === ' ') {
+            opIdx--;
+          }
+          
+          if (opIdx >= 0 && (expr[opIdx] === '+' || expr[opIdx] === '-')) {
+            const op = expr[opIdx];
+            const leftExpr = expr.substring(0, opIdx);
+            let baseValue;
+            try {
+              baseValue = eval(leftExpr);
+            } catch (e) {
+              baseValue = 0;
+            }
+            const percentVal = baseValue * (percentNum / 100);
+            expr = expr.substring(0, numStart) + percentVal + expr.substring(pctIdx + 1);
+          } else {
+            const percentVal = percentNum / 100;
+            expr = expr.substring(0, numStart) + percentVal + expr.substring(pctIdx + 1);
+          }
+        }
+        setDisplay(String(eval(expr)));
+      } catch {
+        setDisplay('Error');
+      }
+      return;
+    }
+    setDisplay(d => d === '0' && !['.','+','-','*','/','%'].includes(v) ? v : d + v);
   };
   const calcBtns = ['C','⌫','%','/', '7','8','9','*', '4','5','6','-', '1','2','3','+', '0','.','00','='];
 
