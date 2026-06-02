@@ -107,4 +107,4 @@ cd dompet-kost
 
 ## 👥 Kontributor
 * **[@Boby Harjuna Pangestu](https://github.com/gnarlyaxx)** (Owner & Developer)
-* **[@Biaro1](https://github.com/Biaro1)** (Co-Developer)
+* **[@Bilal Abhiyantara](https://github.com/Biaro1)** (Co-Developer)
