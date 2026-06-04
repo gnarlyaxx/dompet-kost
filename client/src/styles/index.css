@@ -45,3 +45,12 @@ body {
 .typing-dot { animation: typing-dot 1.2s infinite; }
 .typing-dot:nth-child(2) { animation-delay: 0.2s; }
 .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dropdownIn {
+  from { opacity: 0; transform: translateY(-8px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.profile-dropdown {
+  animation: dropdownIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-origin: top right;
+}

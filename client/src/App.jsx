@@ -135,6 +135,17 @@ function App() {
   const expense = transactions.filter(t => t.type === 'expense').reduce((s, t) => s + t.amount, 0);
   const budgetPercent = budget.total > 0 ? Math.round((expense / budget.total) * 100) : 0;
 
+  // logout: bersihkan sesi dan state ──────────────────────────────────────────
+  const handleLogout = async () => {
+    if (isSupabaseConfigured && supabase) {
+      await supabase.auth.signOut();
+    }
+    localStorage.removeItem('access_token');
+    setUser(null);
+    setTransactions([]);
+    setBudget({ used: 0, total: 1500000 });
+  };
+
   // tampilan loading pas nungguin data dateng ───────────────────────────────────────────────────────
   if (loading) {
     return (
@@ -148,7 +159,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Header budgetPercent={budgetPercent} />
+      <Header budgetPercent={budgetPercent} user={user} onLogout={handleLogout} />
       
       {/* Custom Toast Notification */}
       {toast.show && (
